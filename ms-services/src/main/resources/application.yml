@@ -1,1 +1,26 @@
-
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.88.220;databaseName=servcha
+    username: sa
+    password: spfcc
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+management:
+  info:
+    defaults:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env
+      base-path: /monitor
+server:
+  port: 8080
