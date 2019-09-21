@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using OrderConsult.DataAccess;
 
 namespace OrderConsult
 {
@@ -25,6 +27,17 @@ namespace OrderConsult
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            options.AddPolicy("AllowCors", builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .WithMethods("GET")
+                .AllowAnyHeader();
+            })
+            );
+            services.AddDbContext<ApplicationDdContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -40,7 +53,7 @@ namespace OrderConsult
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors("AllowCors");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
