@@ -1,7 +1,8 @@
 package servicompo.com.br.msservices.Models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,32 +13,35 @@ import javax.persistence.Table;
 
 @Entity(name="vw_ms_getorders")
 @Table(name = "VW_MS_GETORDERS")
-public class Orders   {
+public class Order implements Serializable {
     
-   // @Column(name = "CPF_CNPJ", nullable = false)
-    private String CPF_CNPJ;
+    // @Column(name = "CPF_CNPJ", nullable = false)
+
+    private static final long serialVersionUID = 1L;
     @Id
-    //@Column(name = "NumOS")
+    @Column(name = "numos")
     private  String NumOS;
-    //@Column(name = "NumeroSinistro", nullable = false)
+    @Column(name = "cpf_cnpj")
+    private String CPF_CNPJ;
+    @Column(name = "numerosinistro", nullable = false)
     private String NumeroSinistro;
-    //@Column(name = "Marca", nullable = true)
+    @Column(name = "marca", nullable = true)
     private String Marca;
-    //@Column(name = "Modelo", nullable = true)
+    @Column(name = "modelo", nullable = true)
     private String Modelo;
-    //@Column(name = "Tipo", nullable = true)
+    @Column(name = "tipo", nullable = true)
     private String Tipo;
-    //@Column(name = "SN", nullable = true)
+    @Column(name = "sn", nullable = true)
     private String SN ;
-    //@Column(name = "DataCri", nullable = true)
-    private LocalDate DataCri ;
-   // @Column(name = "Ststr", nullable = true)
+    @Column(name = "datacri", nullable = true)
+    private LocalDateTime DataCri ;
+    @Column(name = "ststr", nullable = true)
     private String ststr;
 
-    public Orders() {
+    public Order() {
     }
 
-    public Orders(String CPF_CNPJ, String NumOS, String NumeroSinistro, String Marca, String Modelo, String Tipo, String SN, LocalDate DataCri, String ststr) {
+    public Order(String CPF_CNPJ, String NumOS, String NumeroSinistro, String Marca, String Modelo, String Tipo, String SN, LocalDateTime DataCri, String ststr) {
         this.CPF_CNPJ = CPF_CNPJ;
         this.NumOS = NumOS;
         this.NumeroSinistro = NumeroSinistro;
@@ -105,11 +109,11 @@ public class Orders   {
         this.SN = SN;
     }
   
-    public LocalDate getDataCri() {
+    public LocalDateTime getDataCri() {
         return this.DataCri;
     }
 
-    public void setDataCri(LocalDate DataCri) {
+    public void setDataCri(LocalDateTime DataCri) {
         this.DataCri = DataCri;
     }
   
@@ -121,47 +125,47 @@ public class Orders   {
         this.ststr = ststr;
     }
 
-    public Orders CPF_CNPJ(String CPF_CNPJ) {
+    public Order CPF_CNPJ(String CPF_CNPJ) {
         this.CPF_CNPJ = CPF_CNPJ;
         return this;
     }
 
-    public Orders NumOS(String NumOS) {
+    public Order NumOS(String NumOS) {
         this.NumOS = NumOS;
         return this;
     }
 
-    public Orders NumeroSinistro(String NumeroSinistro) {
+    public Order NumeroSinistro(String NumeroSinistro) {
         this.NumeroSinistro = NumeroSinistro;
         return this;
     }
 
-    public Orders Marca(String Marca) {
+    public Order Marca(String Marca) {
         this.Marca = Marca;
         return this;
     }
 
-    public Orders Modelo(String Modelo) {
+    public Order Modelo(String Modelo) {
         this.Modelo = Modelo;
         return this;
     }
 
-    public Orders Tipo(String Tipo) {
+    public Order Tipo(String Tipo) {
         this.Tipo = Tipo;
         return this;
     }
 
-    public Orders SN(String SN) {
+    public Order SN(String SN) {
         this.SN = SN;
         return this;
     }
 
-    public Orders DataCri(LocalDate DataCri) {
+    public Order DataCri(LocalDateTime DataCri) {
         this.DataCri = DataCri;
         return this;
     }
 
-    public Orders ststr(String ststr) {
+    public Order ststr(String ststr) {
         this.ststr = ststr;
         return this;
     }
@@ -170,29 +174,29 @@ public class Orders   {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Orders)) {
+        if (!(o instanceof Order)) {
             return false;
         }
-        Orders orders = (Orders) o;
-        return Objects.equals(CPF_CNPJ, orders.CPF_CNPJ) && Objects.equals(NumOS, orders.NumOS) && Objects.equals(NumeroSinistro, orders.NumeroSinistro) && Objects.equals(Marca, orders.Marca) && Objects.equals(Modelo, orders.Modelo) && Objects.equals(Tipo, orders.Tipo) && Objects.equals(SN, orders.SN) && Objects.equals(DataCri, orders.DataCri) && Objects.equals(ststr, orders.ststr);
+        Order order = (Order) o;
+        return Objects.equals(CPF_CNPJ, order.CPF_CNPJ) && Objects.equals(NumOS, order.NumOS) && Objects.equals(NumeroSinistro, order.NumeroSinistro) && Objects.equals(Marca, order.Marca) && Objects.equals(Modelo, order.Modelo) && Objects.equals(Tipo, order.Tipo) && Objects.equals(SN, order.SN) && Objects.equals(DataCri, order.DataCri) && Objects.equals(ststr, order.ststr);
     }
 
-    @Override
+@Override
     public int hashCode() {
-        return Objects.hash(CPF_CNPJ, NumOS, NumeroSinistro, Marca, Modelo, Tipo, SN, DataCri, ststr);
+       return Objects.hash(CPF_CNPJ, NumOS, NumeroSinistro, Marca, Modelo, Tipo, SN, DataCri, ststr);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " CPF_CNPJ='" + getCPF_CNPJ() + "'" +
+            " CF_CNPJ='" + getCPF_CNPJ() + "'" +
             ", NumOS='" + getNumOS() + "'" +
-            ", NumeroSinistro='" + getNumeroSinistro() + "'" +
+          ", NumeroSinistro='" + getNumeroSinistro() + "'" +
             ", Marca='" + getMarca() + "'" +
-            ", Modelo='" + getModelo() + "'" +
+            ", Modelo='" + getModelo() + "" +
             ", Tipo='" + getTipo() + "'" +
-            ", SN='" + getSN() + "'" +
-            ", DataCri='" + getDataCri() + "'" +
+           ", SN='" + getSN() + "'" +
+           ", DataCri='" + getDataCri() + "'" +
             ", ststr='" + getStstr() + "'" +
             "}";
     }
