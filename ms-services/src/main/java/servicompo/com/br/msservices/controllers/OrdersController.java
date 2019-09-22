@@ -45,7 +45,7 @@ public class OrdersController {
         List<Order> _order = _orderRepository.findByNumOS(_numos);
         if(_order.size() >0 )
             return new ResponseEntity<Order>(_order.get(0), HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/numsinistro/{numsinistro}")
