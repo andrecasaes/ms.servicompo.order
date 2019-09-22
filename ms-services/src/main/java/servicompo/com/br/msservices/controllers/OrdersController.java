@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import servicompo.com.br.msservices.Models.Order;
 import servicompo.com.br.msservices.Repository.OrdersRepository;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/order/")
-
 public class OrdersController {
 
     @Autowired
