@@ -8,6 +8,9 @@
     <link href="css/main.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="js/servicompo.js"></script>
   </head>
   <body>
     <div class="s003">
@@ -33,12 +36,27 @@
             </button>
           </div>
         </div>
-        <div id="dados"></div>
+        <div id="dados" class="container"></div>
       </form>
     </div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="loader"></div>
+        <div clas="loader-txt">
+          <p>AGUARDE....</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     
     <script src="js/extention/choices.js"></script>
-    <script src="js/servicompo.js"></script>
+    
     <script>
       const choices = new Choices('[data-trigger]',
       {
@@ -50,6 +68,7 @@
         function(){ 
           var docNumber = $("#search").val();
           var docType = $("#docType").val();
+          $("#dados").html();
           getOrders(docType,docNumber);
 
         }
