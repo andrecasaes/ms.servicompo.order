@@ -12,7 +12,6 @@ function hideModal(){
 }
 
 
-
 function getOrders(seachType, searchValue) {
 
     searchValue = searchValue.replace("/", "");
